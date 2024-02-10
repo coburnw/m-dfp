@@ -3,7 +3,10 @@ import os
 from microchip_dfp import Atdf
 
 if __name__ == '__main__':
-    fpath = os.path.expanduser('~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf/AVR128DA28.atdf')
+    path = '~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf/AVR64DD28.atdf'
+    print('opening {}'.format(path))
+    fpath = os.path.expanduser(path)
+
     target = Atdf(fpath)
 
     for device in target.devices:
@@ -25,7 +28,7 @@ if __name__ == '__main__':
     print()
 
     variant = target.variants[0]
-    pinout = target.pinouts[variant.package]
+    pinout = target.pinouts[variant.pinout]
     print(pinout.name)
     for pin in pinout:
         print('  {}: {}'.format(pin.position, pin.pad))
